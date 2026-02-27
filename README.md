@@ -39,6 +39,12 @@ skills/ui-element-ops/scripts/run_parse_ui.sh /abs/path/to/screen.png
 python3 skills/ui-element-ops/scripts/operate_ui.py --help
 ```
 
+4. Capture + parse with randomized names:
+
+```bash
+skills/ui-element-ops/scripts/capture_and_parse.sh
+```
+
 ## Main Files
 
 - `skills/ui-element-ops/SKILL.md`

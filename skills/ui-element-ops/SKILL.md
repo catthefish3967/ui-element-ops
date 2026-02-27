@@ -32,6 +32,11 @@ skills/ui-element-ops/scripts/run_parse_ui.sh /abs/path/to/1.jpeg
 - `<image>.elements.json`
 - `<image>.overlay.png`
 
+4. One-step capture + parse with randomized names:
+```bash
+skills/ui-element-ops/scripts/capture_and_parse.sh
+```
+
 ## Workflow
 
 1. Confirm screenshot path and desired output path.

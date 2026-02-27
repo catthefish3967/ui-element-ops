@@ -26,6 +26,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import secrets
 import subprocess
 import tempfile
 import time
@@ -143,7 +144,8 @@ def apply_delay(seconds: float) -> None:
 
 def default_screenshot_path() -> Path:
     ts = datetime.now().strftime("%Y%m%d-%H%M%S")
-    return Path(tempfile.gettempdir()) / f"ui-shot-{ts}.png"
+    rand = secrets.token_hex(4)
+    return Path(tempfile.gettempdir()) / f"ui-shot-{ts}-{rand}.png"
 
 
 def default_coord_profile_path() -> Path:
