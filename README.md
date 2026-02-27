@@ -45,6 +45,19 @@ python3 skills/ui-element-ops/scripts/operate_ui.py --help
 skills/ui-element-ops/scripts/capture_and_parse.sh
 ```
 
+## Performance Notes
+
+- `run_parse_ui.sh` and `capture_and_parse.sh` are compute-heavy (OCR + detection + captioning).
+- On CPU-only machines, one run can take tens of seconds and high CPU/RAM usage.
+- If you already have a screenshot file, parse it directly instead of capturing again:
+
+```bash
+skills/ui-element-ops/scripts/run_parse_ui.sh /abs/path/to/screen.png
+```
+
+- Avoid tight loops; increase polling intervals for repeated tasks.
+- Prefer lower-frequency parsing and reuse the latest `*.elements.json` when possible.
+
 ## Main Files
 
 - `skills/ui-element-ops/SKILL.md`

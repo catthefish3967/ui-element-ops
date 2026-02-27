@@ -5,10 +5,16 @@ set -euo pipefail
 #
 # Usage:
 #   capture_and_parse.sh [--dry-run] [output_dir] [prefix]
+#   capture_and_parse.sh [--dry-run] /abs/path/to/screenshot.png
+#
+# Note:
+#   If a screenshot path is provided and the file already exists, the script
+#   skips capture and only runs parsing.
 #
 # Examples:
 #   skills/ui-element-ops/scripts/capture_and_parse.sh
 #   skills/ui-element-ops/scripts/capture_and_parse.sh /tmp ui
+#   skills/ui-element-ops/scripts/capture_and_parse.sh /Users/me/Downloads/screen.png
 #   skills/ui-element-ops/scripts/capture_and_parse.sh --dry-run /tmp ui
 #
 # Env (optional):
@@ -22,8 +28,23 @@ if [ "${1:-}" = "--dry-run" ]; then
   shift
 fi
 
-OUTPUT_DIR="${1:-/tmp}"
-PREFIX="${2:-ui}"
+OUTPUT_DIR="/tmp"
+PREFIX="ui"
+EXPLICIT_IMAGE_PATH=""
+
+if [ "${1:-}" != "" ]; then
+  case "$1" in
+    *.png|*.jpg|*.jpeg|*.webp)
+      EXPLICIT_IMAGE_PATH="$1"
+      shift
+      ;;
+    *)
+      OUTPUT_DIR="$1"
+      shift
+      PREFIX="${1:-ui}"
+      ;;
+  esac
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -33,13 +54,25 @@ else
   RAND="$(LC_ALL=C tr -dc 'a-f0-9' </dev/urandom | head -c8)"
 fi
 
-ID="$(date +%Y%m%d-%H%M%S)-${RAND}"
-BASE="${OUTPUT_DIR%/}/${PREFIX}-${ID}"
-IMG="${BASE}.png"
+if [ -n "$EXPLICIT_IMAGE_PATH" ]; then
+  IMG="$EXPLICIT_IMAGE_PATH"
+  BASE="${IMG%.*}"
+  if [ -f "$IMG" ]; then
+    CAPTURE_NEEDED=0
+  else
+    CAPTURE_NEEDED=1
+  fi
+else
+  ID="$(date +%Y%m%d-%H%M%S)-${RAND}"
+  BASE="${OUTPUT_DIR%/}/${PREFIX}-${ID}"
+  IMG="${BASE}.png"
+  CAPTURE_NEEDED=1
+fi
+
 JSON="${BASE}.elements.json"
 OVERLAY="${BASE}.overlay.png"
 
-mkdir -p "$OUTPUT_DIR"
+mkdir -p "$(dirname "$IMG")"
 
 if [ "$DRY_RUN" -eq 1 ]; then
   echo "[dry-run] screenshot: $IMG"
@@ -48,7 +81,11 @@ if [ "$DRY_RUN" -eq 1 ]; then
   exit 0
 fi
 
-python3 "$SCRIPT_DIR/operate_ui.py" screenshot --output "$IMG"
+if [ "$CAPTURE_NEEDED" -eq 1 ]; then
+  python3 "$SCRIPT_DIR/operate_ui.py" screenshot --output "$IMG"
+else
+  echo "use existing screenshot: $IMG"
+fi
 "$SCRIPT_DIR/run_parse_ui.sh" "$IMG" "$JSON" "$OVERLAY"
 
 echo "screenshot: $IMG"

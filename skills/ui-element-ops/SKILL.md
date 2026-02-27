@@ -71,6 +71,7 @@ skills/ui-element-ops/scripts/capture_and_parse.sh
 - Missing dependencies or weights: run bootstrap script again.
 - Permission/cache errors under `$HOME`: keep temporary caches under `/tmp` (handled by run script).
 - CPU-only machine: expect slower inference.
+- Performance note: parse/capture-and-parse commands are heavy; avoid very tight loops and reuse recent `elements.json` when possible.
 - Headless environment limitation:
   - usable without GUI: parse/list/find/wait/calibrate on existing files.
   - requires GUI session: click/click-xy/type/key/hotkey/screenshot/screen-info.
